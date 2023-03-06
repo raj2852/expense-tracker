@@ -1,9 +1,11 @@
 import "./App.css";
 import images from "./images";
-import { Credit,Realdebit, Statement, InputArea } from "./components";
-
+import { Credit, Statement, InputArea } from "./components";
+import { GlobalProvider } from "./context/globalState";
 function App() {
+ 
   return (
+    <GlobalProvider>
     <div className="App">
       <h1>My Expense Tracker</h1>
           <text>
@@ -18,9 +20,7 @@ function App() {
         <div className="tracker">
         <div className="tabhead">
         <Credit/>   
-          <Realdebit/>
           </div>
-          <Statement/>
           <Statement/>
           <text style={{marginTop:"10px"}}>Add a new statement:</text>
           <InputArea/>     
@@ -28,6 +28,7 @@ function App() {
         
       </div>
     </div>
+    </GlobalProvider>
   );
 }
 

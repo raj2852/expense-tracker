@@ -40,7 +40,10 @@ text{
 }
 .statement{
     background-color: rgba(0,0,0,0.5);
-    padding: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-width: 0.5;
     border-style: solid;
     border-color: dimgray;
@@ -56,4 +59,13 @@ text{
     justify-content: space-between;
     width: 100%;
     
+}
+input{
+    padding: 20px;
+    margin: 2px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

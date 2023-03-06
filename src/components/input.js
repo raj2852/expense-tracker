@@ -1,14 +1,47 @@
-import React from "react";
-import images from "../images";
+import React, { useState, useContext } from "react";
+import { GlobalContext } from "../context/globalState";
 
 const InputArea = () => {
-    return(
-        <div className="input">
-            <input type="text" placeholder="Enter your expense detail" style={{width:"60%"}}/>
-            <button className="confirm"  style={{borderWidth: 0,borderColor: "transparent", backgroundColor:"green",borderRadius:12}}><img src={images.confirm} alt="confirm"/></button>
-            <button className="delete"  style={{borderWidth: 0,borderColor: "transparent", backgroundColor:"red",borderRadius:12}}><img src={images.delete} alt="delete"/></button>
-        </div>
-    )
-}
+  const [text, setText] = useState("");
+  const [amount, setAmount] = useState("");
+  const { addTransaction } = useContext(GlobalContext);
+
+  const add = e => {
+    e.preventDefault();
+    const newTransaction = {
+        id: Math.floor(Math.random()*100000000),
+        text,
+        amount: +amount,
+    }
+    addTransaction(newTransaction);
+    setAmount("");
+    setText("");
+  }
+
+  return (
+    <form onSubmit={add}>
+    <div className="input">
+        
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Expense detail"
+        style={{ width: "60%" }}
+      />
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        placeholder="Expense amount"
+        style={{ width: "30%" }}
+      />
+      <input type="submit" style={{backgroundColor:"green"}}/>
+        
+      
+    </div>
+    </form>
+  );
+};
 
 export default InputArea;
